@@ -6,9 +6,11 @@ Here's the corrected version:
 
 This is an example of a Rust project that can be available from a public URL and run on a computer locally or, without change, from your setip.io account in case the computer would be unavailable.
 
+This code can also be instantly redeployed remotely after being changed locally so it always reflects the local changes: Simply include the deploy.sh script into your preferred CI/CD.
+
 Rust code is very efficient, and running it directly behind one's URLs on a setip.io account provides some unique performance advantages when compared with other deployment methods. Added to this is the ability to keep deployment in-house without changing any of the code, depending on whether it is deployed in-house or over the public cloud.
 
-The definition of which port is available for public URL access does not need to be known when coding and will be automatically available from the SETIP_LISTEN_PORT environment variable. This makes the code compatible with any setip.io bucket that one will choose to deploy to:
+The definition of which port is available for public URL access does not need to be known when coding and will be automatically available from the SETIP_LISTEN_PORT environment variable. Since each bucket available from one's setip.io account is assigned at least one listening port of its own to be accessible through a secured URL this makes the code compatible with any setip.io bucket that one will choose to deploy to:
 
 ```rust
 let port = env::var("SETIP_LISTEN_PORT").unwrap_or_else(|_| "8099".to_string());
