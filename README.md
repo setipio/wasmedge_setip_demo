@@ -22,7 +22,7 @@ This code is instantly redeployed after being changed locally so it always refle
 
 Rust code is very efficient, and running it directly behind one's URLs on a setip.io account provides some unique performance advantages when compared with other deployment methods. Added to this is the ability to keep deployment in-house without changing any of the code, depending on whether it is deployed in-house or over the public cloud.
 
-The definition of which port one's code must be listening to so it is available through the public URL does not need to be known when coding or deploying and is automatically made available at runtime through the `SETIP_LISTEN_PORT` environment variable. 
+The definition of which port one's code must be listening to, so this port can be reached through the public URL, does not need to be known when coding or deploying and is automatically made available at runtime through the `SETIP_LISTEN_PORT` environment variable. 
 Since each bucket available from one's setip.io account is assigned at least one listening port of its own, the use of this variable instead of a specific port number makes the code compatible with any setip.io bucket that one will choose to deploy to. Below is an example of how the listening port is simply defined as `SETIP_LISTEN_PORT` and only defined as `8099` when running locally if `SETIP_LISTEN_PORT` has not been defined in a local build script, unlike while executing on setip.io where it's always made available.
 
 ```rust
