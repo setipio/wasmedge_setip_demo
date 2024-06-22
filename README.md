@@ -4,7 +4,9 @@ Here's the corrected version:
 
 # A simple HTTP API server to deploy both locally and remotely behind the same public URL.
 
-This is a simple Rust project that can run an API server and be made instantly available over secured public URLs from any or limited public IP addresses . 
+This is a simple Rust project that can run an API server and be made instantly available over secured public URLs from any or limited public IP addresses.
+It is build in Rust but also runnable through With WasmEdge, according to the WasmEdge's authors: An app could take 1/100 of the size of a similar Linux container app.
+
 Using the same public URLs, incoming internet connections can be routed to a any local machine (As in: A machine with no public IP addresses) or on the cloud. By offering code execution both online and offline a local machine can be taken offline for planned or unexpected reason (Local connection drop, hardware issues etc...) while connections are still served from the public node as a failover. This lets local resources be used most of the time and remote code using remote resources be accessed only when local resources are unavailable. Meanwhile the same code can be used locally and remotely without any configuration change which greatly simplify deployment.
 
 Running the same code on the cloud and locally behind the same public URLs allows to save on some cloud related costs with in-house resources while still responding if in-house resources are no longer available.
@@ -68,7 +70,9 @@ cargo build --target wasm32-wasi --release
 
 ## Run locally
 
-Make sure you have installed wasmedge:
+Make sure you have installed 
+[wasmedge](https://wasmedge.org). 
+
 
 ```bash
 curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash
