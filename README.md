@@ -2,12 +2,19 @@ Here's the corrected version:
 
 ---
 
-# A simple HTTP API server to deploy both locally and remotely behind the same public URL.
+# A simple HTTP public API server to deploy locally with offline access.
 
-This is a simple Rust project that can run an API server and be made instantly available over secured public URLs from any or limited public IP addresses.
-It is build in Rust but also runnable through With WasmEdge, according to the WasmEdge's authors: An app could take 1/100 of the size of a similar Linux container app.
+This is a simple project that can run an API server and be made instantly available over secured public URLs from any or limited public IP addresses.
 
-Using the same public URLs, incoming internet connections can be routed to a any local machine (As in: A machine with no public IP addresses) or on the cloud. By offering code execution both online and offline a local machine can be taken offline for planned or unexpected reason (Local connection drop, hardware issues etc...) while connections are still served from the public node as a failover. This lets local resources be used most of the time and remote code using remote resources be accessed only when local resources are unavailable. Meanwhile the same code can be used locally and remotely without any configuration change which greatly simplify deployment.
+It is written in Rust and runnable through With WasmEdge. According to the WasmEdge's authors: An app could take 1/100 of the size of a similar Linux container app.
+
+Since setip.io accounts provide a server wasm environment that is also compatible with WasmEdge: any code running locally or on the cloud can be running indeferenly on local machines but also directly behind the setip.io provided public URLs when offline.
+
+Think of this like you would think of a CDN but a caching solution for code generated content, and not only static content. That makes it possible to run code where it's the most efficient and the most cost-effective at the same time, just like for CDN and static pages.
+
+Using the same setip.io supplied public URLs, incoming internet connections can be routed to any local machine (As in: A machine with no public IP addresses that you selhost or hosted ) or on the cloud. By offering code execution both online and offline a local machine can be taken offline for planned or unexpected reason (Local connection drop, hardware issues etc...) and while connections are still served from the public node as a failover.
+ This lets local resources be used most of the time and remote resources be accessed only when local resources are unavailable. This limits third party code excution cost only when necessary.
+  Meanwhile the same code can be used for local or remote execution without any configuration change which greatly simplify deployment. Better yet, by using a wasm execution environment, it is possible to write in most popular languages that can compile to the wasm standard so as to benefit of a large ecosystem.
 
 Running the same code on the cloud and locally behind the same public URLs allows to save on some cloud related costs with in-house resources while still responding if in-house resources are no longer available.
 
