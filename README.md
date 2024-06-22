@@ -1,15 +1,22 @@
 # HTTP server example using the Warp crate
 
-## Quickstart with Docker
+This is an example of a Rust project that can run from your setip.io account and be associated with a URL of your choice from the URL menu.
 
-With an WASI-enabled Docker, you just need one line of command to build and run the HTTP server example. For details, refer to the [Dockerfile](../Dockerfile) and [docker-compose.yml](../docker-compose.yml) files.
+## Deploy to your setip.io account
+
+Edit the deploy.sh file and edit the following:
+
+BUCKET_LOCATION=https://b5.yourprojectname.wg0.io #use your domain name if registered with your setip.io account.
+
+BEARER=xxxxxxxxx # Replace xxxxxxxxx with the Authentication Token found under the Deploy Key section from the Keys menu available in the Manage area on setip.io after you are logged in.
+
+The script will compile the rust code and upload it to the bucket location indicated above if your Bearer token lets you authenticate with that account.
+To run the script first set the exec right to it and run it as shown:
 
 ```bash
-docker compose build
-docker compose run --no-TTY -p 8080:8080 server-warp
+chmod +x ./deploy.sh
+./deploy.sh
 ```
-
-Next, you can jump directly to the [Test](#test) section. If you want to build and run the application step by step on your own system, read on.
 
 ## Build
 
@@ -17,10 +24,19 @@ Next, you can jump directly to the [Test](#test) section. If you want to build a
 cargo build --target wasm32-wasi --release
 ```
 
-## Run
+## Run locally.
+
+Make sure you have installed wasmedge: 
 
 ```bash
-wasmedge target/wasm32-wasi/release/wasmedge_warp_server.wasm
+curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash
+source $HOME/.wasmedge/env
+```
+
+
+And run the compiled rust binary locally within wasmedge.
+```bash
+wasmedge target/wasm32-wasi/release/wasmedge_setip_demo.wasm
 ```
 
 ## Test
@@ -28,11 +44,11 @@ wasmedge target/wasm32-wasi/release/wasmedge_warp_server.wasm
 Run the following from another terminal.
 
 ```bash
-$ curl http://localhost:8080/
+$ curl http://localhost:8099/
 Try POSTing data to /echo such as: `curl localhost:8080/echo -XPOST -d 'hello world'`
 ```
 
 ```bash
-$ curl http://localhost:8080/echo -X POST -d "WasmEdge"
+$ curl http://localhost:8099/echo -X POST -d "WasmEdge"
 WasmEdge
 ```
