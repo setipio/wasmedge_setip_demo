@@ -4,7 +4,8 @@ Here's the corrected version:
 
 # Deploy a HTTP API server to a setip.io defined public URL
 
-This is an example of a Rust project that can run an API server to be available publicly or only to limited public IPs. Using the same public URLs connections can be routed to a local machine or on the cloud so the local machine can be taken offline or if offline for unexpected reason (Local connection drop, hardware issues etc...).
+This is an example of a Rust project that can run an API server and be made instantly available over secured public URLs from any or limited public IP addresses . 
+Using the same public URLs connections can be routed to a local machine or on the cloud so the local machine can be taken offline or if offline for unexpected reason (Local connection drop, hardware issues etc...).
 
 Running the same code on the cloud and locally behind the same public URLs allows to save on some cloud related costs with in-house resources while still responding if in-house resources are no longer available.
 
