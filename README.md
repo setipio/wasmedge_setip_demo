@@ -4,14 +4,16 @@ Here's the corrected version:
 
 # Deploy a HTTP API server to a setip.io defined public URL
 
-This is an example of a Rust project that can be available from a public URL and run on a computer locally or, without change, from your setip.io account in case the computer would be unavailable.
+This is an example of a Rust project that can run an API server to be available publicly or only to limited public IPs. Using the same public URLs connections can be routed to a local machine or on the cloud so the local machine can be taken offline or in case of downtime locally.
 
-This code can also be instantly redeployed remotely after being changed locally so it always reflects the local changes: Simply include the deploy.sh script into your preferred CI/CD.
+Running the same code on the cloud and locally behind the same public URLs allows to save on some cloud related costs with in-house resources while still responding if in-house resources are no longer available.
+
+This code is instantly redeployed after being changed locally so it always reflects the local changes any way it is accessible by includin the deploy.sh script into your preferred CI/CD scripts.
 
 Rust code is very efficient, and running it directly behind one's URLs on a setip.io account provides some unique performance advantages when compared with other deployment methods. Added to this is the ability to keep deployment in-house without changing any of the code, depending on whether it is deployed in-house or over the public cloud.
 
-The definition of which port is available for public URL access does not need to be known when coding and will be automatically available from the SETIP_LISTEN_PORT environment variable. 
-Since each bucket available from one's setip.io account is assigned at least one listening port of its own to be accessible through a secured URL this makes the code compatible with any setip.io bucket that one will choose to deploy to:
+The definition of which port one's code must be listening to so it is available through the public URL  does not need to be known when coding nor deploying and is automatically made available at runtime through the `SETIP_LISTEN_PORT` environment variable. 
+Since each bucket available from one's setip.io account is assigned at least one listening port of its own the use of this variable instead of a specific port number makes the code compatible with any setip.io bucket that one will choose to deploy to. Below is an example of how the listening port is simply defined as `SETIP_LISTEN_PORT` and only defined as `8099`when running locally if `SETIP_LISTEN_PORT` has not been defined in a local build script and unlilke while executing on setip.io where it's always made available.
 
 ```rust
 let port = env::var("SETIP_LISTEN_PORT").unwrap_or_else(|_| "8099".to_string());
