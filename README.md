@@ -4,7 +4,7 @@ Here's the corrected version:
 
 # HTTP API server Rust example and deploy to setip.io
 
-This is an example of a Rust project that can run from your setip.io account and be associated with a URL of your choice from the URL menu.
+This is an example of a Rust project that can be available from a public URL and run on a computer locally or, without change, from your setip.io account in case the computer would be unavailable.
 
 Rust code is very efficient, and running it directly behind one's URLs on a setip.io account provides some unique performance advantages when compared with other deployment methods. Added to this is the ability to keep deployment in-house without changing any of the code, depending on whether it is deployed in-house or over the public cloud.
 
