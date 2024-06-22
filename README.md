@@ -2,9 +2,9 @@ Here's the corrected version:
 
 ---
 
-# Deploy a sample HTTP API server to a setip.io defined public URL
+# A simple HTTP API server to deploy both locally and remotely behind the same public URL.
 
-This is an example of a Rust project that can run an API server and be made instantly available over secured public URLs from any or limited public IP addresses . 
+This is a simple Rust project that can run an API server and be made instantly available over secured public URLs from any or limited public IP addresses . 
 Using the same public URLs, incoming internet connections can be routed to a any local machine (As in: A machine with no public IP addresses) or on the cloud. By offering code execution both online and offline a local machine can be taken offline for planned or unexpected reason (Local connection drop, hardware issues etc...) while connections are still served from the public node as a failover. This lets local resources be used most of the time and remote code using remote resources be accessed only when local resources are unavailable. Meanwhile the same code can be used locally and remotely without any configuration change which greatly simplify deployment.
 
 Running the same code on the cloud and locally behind the same public URLs allows to save on some cloud related costs with in-house resources while still responding if in-house resources are no longer available.
