@@ -6,9 +6,10 @@ This is an example of a Rust project that can run from your setip.io account and
 
 Edit the deploy.sh file and edit the following:
 
-BUCKET_LOCATION=https://b5.yourprojectname.wg0.io #use your domain name if registered with your setip.io account.
+
 
 ```bash
+BUCKET_LOCATION=https://b5.yourprojectname.wg0.io #use your domain name if registered with your setip.io account.
 BEARER=xxxxxxxxx # Replace xxxxxxxxx with the Authentication Token found under the Deploy Key section from the Keys menu available in the Manage area on setip.io after you are logged in.
 ```
 
