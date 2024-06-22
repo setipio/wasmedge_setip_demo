@@ -10,8 +10,9 @@ BUCKET_LOCATION=https://b5.yourprojectname.wg0.io #use your domain name if regis
 
 BEARER=xxxxxxxxx # Replace xxxxxxxxx with the Authentication Token found under the Deploy Key section from the Keys menu available in the Manage area on setip.io after you are logged in.
 
-The script will compile the rust code and upload it to the bucket location indicated above if your Bearer token lets you authenticate with that account.
-To run the script first set the exec right to it and run it as shown:
+
+The script will compile the rust code and execute it behind a URL of your choice or any of the preset bucket URLs available with setip.io accounts.
+The script will then upload the compiled rust binary to the bucket location of your choice.
 
 ```bash
 chmod +x ./deploy.sh
