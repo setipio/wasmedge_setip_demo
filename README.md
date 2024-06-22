@@ -2,7 +2,7 @@ Here's the corrected version:
 
 ---
 
-# HTTP API server Rust example and deploy to setip.io
+# Deploy a HTTP API server to a setip.io defined public URL
 
 This is an example of a Rust project that can be available from a public URL and run on a computer locally or, without change, from your setip.io account in case the computer would be unavailable.
 
