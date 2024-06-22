@@ -18,10 +18,13 @@ let port = env::var("SETIP_LISTEN_PORT").unwrap_or_else(|_| "8099".to_string());
 let addr: SocketAddr = format!("127.0.0.1:{}", port).parse()?;
 ```
 
-By default one's setip.io account provides a total of 10 buckets, the first 7 buckets are assigned to deploy static code only (Think a React.js site's build directory) while the last 3 buckets are assigned to deploying code that can be made accessible through any of the predefined URLs provided by one's setip.io account.
-Buckets accessible to deploy rust code is therefore between b8 and b11 included. This means that if one connects to `https://b8.projectname.wg0.io` then one will be redirect to your code runninng from bucket `b8` and you will need to change the value set for `BUCKET_LOCATION='https://b11.setip.io/upload'` to be `BUCKET_LOCATION='https://b8.projectname.wg0.io/upload'`
-To define any URL name you can just create a URL in the URL's aread of the Manage section of the setip.io account and use `b8-APP` as the origin for that URL so it connects directly to the port defined by the SETIP_LISTEN_PORT variable in your code.
+By default one's setip.io account provides a total of 10 buckets, the first 7 buckets are assigned to deploy static code only (Think a React.js site's build directory) while the last 3 buckets are assigned to deploying code. One can set static and dynamic bucket to be accessible from any custom public url as one ,may create under the URL's section while indicating the bucket number as the "Origin".
 
+Buckets accessible to deploy rust code must be then be picked between b8 and b11 included. This means that if one connects to `https://b8.projectname.wg0.io` one will be redirect to one's code running from bucket `b8`; one will need to change the value in the deploy.sh that is set for `BUCKET_LOCATION='https://b11.setip.io/upload'` so it will show instead `BUCKET_LOCATION='https://b8.projectname.wg0.io/upload'`.
+
+To define any URL name you can just create a URL, and have it point to the default port listening for an API server, for example, head in the URL's area of the Manage section of the setip.io account and type `b8-APP` for the value in the "Origin". The URL will proxy directly to the port defined by the SETIP_LISTEN_PORT variable from your code running in bucket 8.
+
+You can also run the same code locally as you can read below and associate the same URLs to code running anywhere, even locally, simply use of one of the Wireguard supplied configurations. Each configuration matches a peer number and, once connected with wireguard and the matching configuration, the URL will hit your local machine local IP address (The private address available with the Wireguard configuration and displayed next to the configuration). For this URL you will then edit the origin to be `http://peer9.yourproject.wg0.io:4444` if you set SETIP_LISTEN_PORT to be 4444.
 
 ## Context
 
@@ -72,8 +75,9 @@ source $HOME/.wasmedge/env
 And run the compiled Rust binary locally within wasmedge:
 
 ```bash
-wasmedge target/wasm32-wasi/release/wasmedge_setip_demo.wasm
+wasmedge target/wasm32-wasi/release/wasmedge_setip_demo.wasm --env SETIP_LISTEN_PORT=4444
 ```
+Note that the  `--env SETIP_LISTEN_PORT=4444` will send the value to listen to your code when executing locally, replace 4444 by any number but make use your add it to the origin for the URL that must reach that port: `http://peer9.yourproject.wg0.io:4444`
 
 ## Test
 
