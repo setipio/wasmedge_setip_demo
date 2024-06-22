@@ -15,6 +15,7 @@ BEARER=xxxxxxxxx # Replace xxxxxxxxx with the Authentication Token found under t
 
 The script will compile the rust code and execute it behind a URL of your choice or any of the preset bucket URLs available with setip.io accounts.
 The script will then upload the compiled rust binary to the bucket location of your choice.
+To do so, copy and run the following from this project cloned directory on your local machine using the shell.
 
 ```bash
 chmod +x ./deploy.sh
