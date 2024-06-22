@@ -1,5 +1,4 @@
-# HTTP server example using the Warp crate
-
+# HTTP API server Rust example and deploy to setip.io
 This is an example of a Rust project that can run from your setip.io account and be associated with a URL of your choice from the URL menu.
 
 ## Deploy to your setip.io account
