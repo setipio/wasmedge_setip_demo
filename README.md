@@ -1,7 +1,3 @@
-Sure, here is the corrected version with spell-check and improvements:
-
----
-
 # A Simple HTTP Public API Server to Deploy Locally with Offline Access
 
 This is a simple project that can run an API server and be made instantly available over secured public URLs from any or limited public IP addresses.
