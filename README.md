@@ -32,7 +32,9 @@ let addr: SocketAddr = format!("127.0.0.1:{}", port).parse()?;
 
 By default, one's setip.io account provides a total of 10 buckets. The first 7 buckets are assigned to deploy static code only (think a React.js site's build directory) while the last 3 buckets are assigned to deploying code. One can set static and dynamic buckets to be accessible from any custom public URL as one may create under the URLs section while indicating the bucket number as the "Origin".
 
-Buckets accessible to deploy Rust code must be picked between b8 and b11 inclusive. This means that if one connects to `https://b8.projectname.wg0.io` one will be redirected to one's code running from bucket `b8`. One will need to change the value in the deploy.sh that is set for `BUCKET_LOCATION='https://b11.setip.io/upload'` so it will show instead `BUCKET_LOCATION='https://b8.projectname.wg0.io/upload'`.
+Buckets accessible to deploy Rust code must be picked between b8 and b11 inclusive. This means that if one connects to `https://c8.projectname.wg0.io` one will be redirected to one's code running from bucket `b8`. One will need to change the value in the deploy.sh that is set for `BUCKET_LOCATION='https://b11.setip.io/upload'` so it will show instead `BUCKET_LOCATION='https://b8.projectname.wg0.io/upload'`.
+Please note that code is uploaded through buckets using the "b" preffix to the bucket number, as in: `https://b8.projectname.wg0.io`, but the direct public access URL is provided through the public matching public URL using "n" as a prefix to the bucket number, as in `https://c8.projectname.wg0.io`.
+
 
 To define any URL name, you can just create a URL in your setip.io account, and have it point to the default port listening for an API server. As an example, head to the URLs area of the Manage section of the setip.io account and type `b8-APP` for the value in the "Origin". The URL will proxy directly to the port defined by the SETIP_LISTEN_PORT variable from your code running in bucket 8. For the origin simply use the bucket number prefixed by the letter `b` and suffixed by `-APP`, so to forward to the code running in bucket 9 just use `b9-APP` as the origin.
 
