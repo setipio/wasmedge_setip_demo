@@ -1,4 +1,4 @@
-# A Simple HTTP Public API Server to self-host while letting public access offline.
+# A Simple HTTP Public API Server to self-host while letting public keep access even if offline.
 
 This is a simple project, an API server, that can be addressed through a setip.io provided URL while possibly restricting its access to limited public IP addresses.
 
@@ -10,7 +10,8 @@ Think of this like you would think of a CDN but a caching solution for code-gene
 
 It is written in Rust and runnable through WasmEdge. According to WasmEdge's authors, an app could take 1/100 of the size of a similar Linux container app.
 
-Using the same setip.io supplied public URLs, incoming internet connections can be routed to any of one's local machine (as in: a machine with no public IP addresses that you self-host or hosted as baremetal in a colo) or on the cloud. 
+Using the same setip.io supplied public URLs, incoming internet connections can be routed to any of one's local machine (as in: a machine with no public IP addresses that you self-host or hosted as baremetal in a colo) or on the cloud.
+
 By offering code execution both online and offline, a local machine can be taken offline for planned or unexpected reasons (local connection drop, hardware issues, etc.) while connections are still served from the public node as a failover.
 
 This lets local resources be used most of the time and remote resources be accessed only when local resources are unavailable. This limits third-party code execution costs only when necessary.
