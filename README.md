@@ -22,6 +22,8 @@ This code is instantly redeployed after being changed locally so it always refle
 
 Rust code is very efficient, and running it directly behind one's URLs on a setip.io account provides some unique performance advantages when compared with other deployment methods. Added to this is the ability to keep deployment in-house without changing any of the code, depending on whether it is deployed in-house or over the public cloud.
 
+## Automatic Ports assignments.
+
 The definition of which port one's code must be listening to, so this port can be reached through the public URL, does not need to be known when coding or deploying and is automatically made available at runtime through the `SETIP_LISTEN_PORT` environment variable. 
 Since each bucket available from one's setip.io account is assigned at least one listening port of its own, the use of this variable instead of a specific port number makes the code compatible with any setip.io bucket that one will choose to deploy to. Below is an example of how the listening port is simply defined as `SETIP_LISTEN_PORT` and only defined as `8099` when running locally if `SETIP_LISTEN_PORT` has not been defined in a local build script, unlike while executing on setip.io where it's always made available.
 
@@ -36,7 +38,14 @@ Buckets accessible to deploy Rust code must be picked between b8 and b11 inclusi
 Please note that code is uploaded through buckets using the "b" preffix to the bucket number, as in: `https://b8.projectname.wg0.io`, but the direct public access URL is provided through the public matching public URL using "n" as a prefix to the bucket number, as in `https://c8.projectname.wg0.io`.
 
 
-To define any URL name, you can just create a URL in your setip.io account, and have it point to the default port listening for an API server. As an example, head to the URLs area of the Manage section of the setip.io account and type `b8-APP` for the value in the "Origin". The URL will proxy directly to the port defined by the SETIP_LISTEN_PORT variable from your code running in bucket 8. For the origin simply use the bucket number prefixed by the letter `b` and suffixed by `-APP`, so to forward to the code running in bucket 9 just use `b9-APP` as the origin.
+## Connect URLs to running code.
+
+To define any URL name, one can just create a URL in one's setip.io account, and have it point to the default port listening for an API server. 
+
+As an example, one can head to the URLs area of the Manage section of the setip.io account, create or edit a URL, and type `b8-APP` for the value in the "Origin". The URL will proxy directly to the port defined by the SETIP_LISTEN_PORT variable that the Rust code must be listening on to be reachable through the URLs. 
+For the origin simply use the bucket number prefixed by the letter `b` and suffixed by `-APP`, so to forward to the code running in bucket 9 just use `b9-APP` as the origin. 
+Depending which bucket the code ends up running from, the code can always rest assured that a read of the SETIP_LISTEN_PORT environment variable will return the port number that is connected to the matching label. 
+That SETIP_LISTEN_PORT environment variable is injected in the environment the Rust code will be running in and dynamically modified to reflect the port number that must be listened to. In other words, if using a bucket "X", where "X" is the bucket number, one can always use `bX-APP` as the URL's Origin's definition. Each label will translate in the proper port number the code is listening on if listening on the value automatically set in SETIP_LISTEN_PORT environment variable.
 
 You can also run the same code locally as you can read below and associate the same URLs to code running anywhere, even locally, simply by using one of the WireGuard supplied configurations. Each configuration matches a peer number and, once connected with WireGuard and the matching configuration, the URL will hit your local machine's local IP address (the private address available with the WireGuard configuration and displayed next to the configuration). For this URL you will then edit the origin to be `http://peer9.yourproject.wg0.io:4444` if you set SETIP_LISTEN_PORT to be 4444.
 
